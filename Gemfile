@@ -6,7 +6,7 @@ ruby "3.0.0"
 
 gem "device"
 gem "administrate"
-gem "table-print"
+gem "table_print"
 gem "faker"
 gem "dotenv-rails"
 
