@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.0"
 
 
-gem "device"
+gem "devise"
+gem "stripe"
 gem "administrate"
 gem "table_print"
 gem "faker"
