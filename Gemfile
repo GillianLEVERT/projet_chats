@@ -3,6 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
+
+gem "device"
+gem "administrate"
+gem "table-print"
+gem "faker"
+gem "dotenv-rails"
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
@@ -41,6 +49,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
