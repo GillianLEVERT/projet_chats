@@ -8,4 +8,4 @@ dans l'équipe :
 -Dylan (Cavist Father)
 -Yann (Le micro)
 -JB (le Daron)
--Gillian (le Daron BIS)
+-Gillian (la petite Branche)
