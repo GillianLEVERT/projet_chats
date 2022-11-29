@@ -1,6 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @item %>
+<div class="card">
+    <h1>Titre/Nom du Chat</h1>
+    <p>Large description du chat</p>
+    <%= image_tag "img2.jpg"%> 
+    <h3>Prix du chat : 14000€</h3>
+</div>
 
 <%# JB : Bouton à passer dans le panier quand il sera créé. Remplacer 100 par @cart.total %>
 
@@ -10,10 +15,18 @@
 <% end %>
 
 <div>
+
+
+  <%= link_to "Editer la fiche", edit_item_path(@item) %> |
+  <%= link_to "Revenir en arrière", items_path %>
+  
+  <%= button_to "Supprimer la fiche", @item, method: :delete %>
+=======
   <%= link_to "Edit this item", edit_item_path(@item) %> |
   <%= link_to "Back to items", items_path %>
 
   <%= button_to "Destroy this item", @item, method: :delete %>
+
 
 
 
