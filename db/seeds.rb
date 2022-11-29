@@ -15,6 +15,6 @@ Item.destroy_all
       title: "Chaton n°#{i+1}",
       description: Faker::Lorem.paragraph(sentence_count: 4),
       price: rand(10..500),
-      image_url: "../app/assets/images/img"+(i+1).to_s+".jpg",
+      image_url: "img"+(i+1).to_s+".jpg",
     )
 end
