@@ -8,6 +8,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -67,4 +68,17 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+
+  config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address:              'smtp-relay.sendinblue.com',
+  port:                 587,
+  domain:               'localhost',
+  user_name:            'adopteunchatonthp@gmail.com',
+  password:             'ApCWDOyfnEPJBL1Y',
+  authentication:       'plain',
+  enable_starttls_auto: true,
+  open_timeout:         5,
+  read_timeout:         5 }
 end
