@@ -2,9 +2,20 @@
 
 <%= render @item %>
 
+<%# JB : Bouton à passer dans le panier quand il sera créé. Remplacer 100 par @cart.total %>
+
+<%= form_tag checkout_create_path, method: :post, data: { turbo: false } do %>
+    <input type="hidden" name="total" value="<%= 100 %>" />
+    <%= submit_tag "Passer commande (à déplacer dans cart/show)", class: "btn" %>
+<% end %>
+
 <div>
   <%= link_to "Edit this item", edit_item_path(@item) %> |
   <%= link_to "Back to items", items_path %>
 
   <%= button_to "Destroy this item", @item, method: :delete %>
+
+
+
+
 </div>
