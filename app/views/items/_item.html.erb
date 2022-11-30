@@ -1,12 +1,10 @@
 <div class="col-span-full md:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200 overflow-hidden" id="<%= dom_id item %>">
+    <%= link_to item_path(item.id) do %>
     <div class="flex flex-col h-full">
-        <!-- Image -->
         <div class="relative">
             <%= image_tag item.image_url, class: "w-full", alt: "Photo de chat", style: "width=301 height=226"%>
         </div>
-        <!-- Card Content -->
         <div class="grow flex flex-col p-5">
-            <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
                     <a href="#0">
@@ -15,7 +13,6 @@
                     <div class="text-sm"><%=item.description%></div>
                 </header>
             </div>
-            <!-- Rating and price -->
             <div class="flex flex-wrap justify-between items-center">
                 <div>
                     <div class="inline-flex text-sm font-medium bg-emerald-100 text-emerald-600 rounded-full text-center px-2 py-0.5"><%= '%.2f' % item.price%> €</div>
@@ -23,4 +20,5 @@
             </div>
         </div>
     </div>
+    <% end %>
 </div>
