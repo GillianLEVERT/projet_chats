@@ -17,7 +17,9 @@
       <div class="px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16 -mb-px">
               <div class="flex">
+                <%= link_to root_path do %>
                 <span class="ml-2 font-bold">AdopteUnChaton</span>
+                <% end %>
               </div>
               <div class="flex items-center space-x-3">
                 <% if user_signed_in? %>

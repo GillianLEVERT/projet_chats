@@ -1,30 +1,65 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="card">
-    <h1> <%=@item.title%></h1>
-    <p>Description : <%=@item.description%> </p>
-    <%= image_tag @item.image_url %> 
-    <h3>Prix de la photo : <%=@item.price%> €</h3>
-</div>
-
-<%# JB : Bouton à passer dans le panier quand il sera créé. Remplacer 100 par @cart.total %>
-
-<%= form_tag checkout_create_path, method: :post, data: { turbo: false } do %>
-    <input type="hidden" name="total" value="<%= @item.price %>" />
-    <%= submit_tag "Passer commande (à déplacer dans cart/show)", class: "btn" %>
-<% end %>
-<br>
-<% if user_signed_in? %>
-<%= link_to "Ajouter au panier", cart_path %>
-<% else %>
-<%= link_to "Ajouter au panier", new_user_session_path %>
-<% end %>
-<br>
-<div>
-
-  <%= link_to "Editer la fiche", edit_item_path(@item) %> |
-  <%= link_to "Revenir en arrière", items_path %>
+<div class="px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <div class="max-w-5xl mx-auto flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
+    
+    <!-- Content -->
+    <div>
+      <div class="mb-3">
+        <%= link_to "<- Back To Listing", root_path, class: "text-sm font-medium text-indigo-500 hover:text-indigo-600" %>
+      </div>
+      <div class="mb-4">
+        <!-- Title -->
+        <h1 class="text-2xl md:text-3xl text-slate-800 font-bold mb-2"><%=@item.title%></h1>
+        <p><%=@item.description%></p>
+      </div>
+      <!-- Image -->
+      <figure class="mb-6">
+        <%= image_tag @item.image_url, class: "w-full rounded-sm", alt: "Photo de chat", style: "width=640 height=360"%>
+      </figure>
+      <button class="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Ajouter au panier - <%= '%.2f' % @item.price %>€</button>
+      <hr class="my-6 border-t border-slate-200">
+      
+      <!-- Related -->
+      <div>
+        <h2 class="text-xl leading-snug text-slate-800 font-bold mb-2">Frequently Bought Together</h2>
+        <ul class="space-y-8 sm:space-y-5 my-6">
+          <% @items.each do |item| %>
+          <!-- Related item -->
+          <li class="sm:flex items-center">
+            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+              <%= image_tag item.image_url, class: "rounded-sm", alt: "Photo de chat", style: "width=200 height=142"%>
+            </a>
+            <div class="grow">
+              <%= link_to item_path(item.id) do %>
+                <h3 class="text-lg font-semibold text-slate-800 mb-1"><%= item.title %></h3>
+              <% end %>
+              <div class="text-sm mb-2"><%= item.description %></div>
+              <!-- Rating and price -->
+              <div class="flex flex-wrap items-center space-x-2">
+                <!-- Price -->
+                <div>
+                  <div class="inline-flex text-sm font-medium bg-emerald-100 text-emerald-600 rounded-full text-center px-2 py-0.5"><%= '%.2f' % item.price %>€</div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>    
+  </div>
   
-  <%= button_to "Supprimer la fiche", @item, method: :delete %>
-
+  <%# JB : Bouton à passer dans le panier quand il sera créé. Remplacer 100 par @cart.total %>
+  
+  <%= form_tag checkout_create_path, method: :post, data: { turbo: false } do %>
+  <input type="hidden" name="total" value="<%= @item.price %>" />
+  <%= submit_tag "Passer commande (à déplacer dans cart/show)", class: "btn" %>
+  <% end %>
+  <br>
+  <% if user_signed_in? %>
+  <%= link_to "Ajouter au panier", cart_path %>
+  <% else %>
+  <%= link_to "Ajouter au panier", new_user_session_path %>
+  <% end %>
 </div>
+  
+  
