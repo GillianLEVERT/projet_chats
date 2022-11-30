@@ -81,3 +81,5 @@ group :test do
 end
 
 gem "pg", "~> 1.4"
+
+gem "tailwindcss-rails", "~> 2.0"
