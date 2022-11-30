@@ -10,10 +10,16 @@
 <%# JB : Bouton à passer dans le panier quand il sera créé. Remplacer 100 par @cart.total %>
 
 <%= form_tag checkout_create_path, method: :post, data: { turbo: false } do %>
-    <input type="hidden" name="total" value="<%= 100 %>" />
+    <input type="hidden" name="total" value="<%= @item.price %>" />
     <%= submit_tag "Passer commande (à déplacer dans cart/show)", class: "btn" %>
 <% end %>
-
+<br>
+<% if user_signed_in? %>
+<%= link_to "Ajouter au panier", cart_path %>
+<% else %>
+<%= link_to "Ajouter au panier", new_user_session_path %>
+<% end %>
+<br>
 <div>
 
   <%= link_to "Editer la fiche", edit_item_path(@item) %> |
