@@ -57,10 +57,25 @@ class CartsController < ApplicationController
     end
   end
 
+  def add_to_cart
+    set_item
+    if @cart.added_items << @item
+      flash[:success] = "Element ajouté à votre panier"
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      if user_signed_in? && current_user.cart
+        @cart = current_user.cart
+      elsif user_signed_in?
+        @cart = Cart.create(user: current_user)
+      else
+        flash[:error] = "Merci de vous connecter pour accéder à cette page."
+        redirect_to new_user_session_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
