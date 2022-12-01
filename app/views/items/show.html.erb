@@ -25,9 +25,11 @@
           <% @items.each do |item| %>
           <!-- Related item -->
           <li class="sm:flex items-center">
-            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
-              <%= image_tag item.image_url, class: "rounded-sm", alt: "Photo de chat", style: "width=200 height=142"%>
-            </a>
+            <div class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0">
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.image_url, class: "rounded-sm", alt: "Photo de chat", style: "width=200 height=142"%>
+              <% end %>
+            </div>
             <div class="grow">
               <%= link_to item_path(item.id) do %>
                 <h3 class="text-lg font-semibold text-slate-800 mb-1"><%= item.title %></h3>
