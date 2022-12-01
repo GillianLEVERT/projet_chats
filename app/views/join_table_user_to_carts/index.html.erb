@@ -1,0 +1,14 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Join table user to carts</h1>
+    <%= link_to 'New join table user to cart', new_join_table_user_to_cart_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="join_table_user_to_carts" class="min-w-full">
+    <%= render @join_table_user_to_carts %>
+  </div>
+</div>

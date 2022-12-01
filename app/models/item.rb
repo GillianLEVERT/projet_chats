@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
 
-    has_many :carts
+    has_many :join_table_user_to_carts
+    has_many :carts, through: :join_table_user_to_carts
+    
     has_many :orders
 
     validates :title, presence: true, length: {in: 3..100, message: "Title lenght must be between 3 and 100" }

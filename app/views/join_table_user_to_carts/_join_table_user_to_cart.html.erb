@@ -1,0 +1,7 @@
+<div id="<%= dom_id join_table_user_to_cart %>">
+  <% if action_name != "show" %>
+    <%= link_to "Show this join table user to cart", join_table_user_to_cart, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this join table user to cart', edit_join_table_user_to_cart_path(join_table_user_to_cart), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
