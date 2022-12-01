@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144451) do
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -39,17 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144451) do
     t.index ["item_id"], name: "index_join_table_user_to_carts_on_item_id"
   end
 
-  create_table "join_table_user_to_charts", force: :cascade do |t|
-    t.bigint "cart_id"
-    t.bigint "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_join_table_user_to_charts_on_cart_id"
-    t.index ["item_id"], name: "index_join_table_user_to_charts_on_item_id"
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -67,8 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144451) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_users_on_cart_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
