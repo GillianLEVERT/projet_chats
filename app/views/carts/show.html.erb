@@ -1,14 +1,12 @@
-<% @items.each do |item|%>
-  <h1><%= item.title %></h1>
-<% end %>
-
-<p style="color: green"><%= notice %></p>
-
-<%= render @cart %>
-
-<div>
-  <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
-
-  <%= button_to "Destroy this cart", @cart, method: :delete %>
+<div class="px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <p style="color: green"><%= notice %></p>
+  
+  <%= render @cart %>
+  
+  <div>
+    <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
+    <%= link_to "Back to carts", carts_path %>
+    
+    <%= button_to "Destroy this cart", @cart, method: :delete %>
+  </div>
 </div>

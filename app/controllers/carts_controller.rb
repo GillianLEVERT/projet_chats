@@ -8,6 +8,7 @@ class CartsController < ApplicationController
   # GET /carts/1 or /carts/1.json
   def show
     @items = @cart.items
+    @total_price = total_price
   end
 
   # GET /carts/new
@@ -71,5 +72,13 @@ class CartsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def cart_params
       params.fetch(:cart, {})
+    end
+
+    def total_price
+      total = 0
+      @cart.items.each do |item|
+        total += item.price
+      end
+      return total
     end
 end
