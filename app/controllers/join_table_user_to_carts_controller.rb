@@ -1,4 +1,5 @@
 class JoinTableUserToCartsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
   before_action :set_join_table_user_to_cart, only: %i[ show edit update destroy ]
 
   # GET /join_table_user_to_carts or /join_table_user_to_carts.json
