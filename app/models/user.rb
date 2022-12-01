@@ -6,6 +6,9 @@ class User < ApplicationRecord
   
   
   has_one :cart
+  has_many :join_table_user_to_carts, through: :carts
+  has_many :items, through: :join_table_user_to_carts
+
   has_many :orders
 
   after_create :welcome_send

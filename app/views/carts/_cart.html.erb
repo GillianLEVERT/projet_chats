@@ -1,2 +1,71 @@
 <div id="<%= dom_id cart %>">
+        <div class="px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+            <!-- Page content -->
+            <div class="max-w-5xl mx-auto flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
+
+                <!-- Cart items -->
+                <div class="mb-6 lg:mb-0">
+                    <header class="mb-2">
+                        <!-- Title -->
+                        <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Shopping Cart (<%= @cart.items.count %>) ✨</h1>
+                    </header>
+
+                    <ul>
+                        <!-- Cart item -->
+                        <% @cart.items.each do |item| %>
+                        <li class="sm:flex items-center py-6 border-b border-slate-200">
+                            <div class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" style="width: 200px; height: 142px">
+                                <%= image_tag item.image_url, class: "rounded-sm", alt: "Photo de chat"%>
+                            </div>
+                            <div class="grow">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-1"><%= item.title %></h3>
+                                <div class="text-sm mb-2"><%= item.description %></div>
+                                <!-- Product meta -->
+                                <div class="flex flex-wrap justify-between items-center">
+                                    <!-- Rating and price -->
+                                    <div class="flex flex-wrap items-center space-x-2 mr-2">
+                                        <!-- Price -->
+                                        <div>
+                                            <div class="inline-flex text-sm font-medium bg-emerald-100 text-emerald-600 rounded-full text-center px-2 py-0.5"><%= '%.2f' % item.price %> €</div>
+                                        </div>
+                                    </div>
+                                    <button class="text-sm underline hover:no-underline">Remove</button>
+                                </div>
+                            </div>
+                        </li>
+                        <% end %>
+                    </ul>
+
+                    <div class="mt-6 text-center lg:text-left">
+                        <a class="text-sm font-medium text-indigo-500 hover:text-indigo-600" href="#0">&lt;- Back To Shopping</a>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="max-w-sm mx-auto lg:max-w-none">
+                    <div class="bg-white p-5 shadow-lg rounded-sm border border-slate-200 lg:w-72 xl:w-80">
+                        <div class="text-slate-800 font-semibold mb-2">Order Summary</div>
+                        <!-- Order details -->
+                        <ul class="mb-4">
+                            <li class="text-sm w-full flex justify-between py-3 border-b border-slate-200">
+                                <div>Products &amp; Subscriptions</div>
+                                <div class="font-medium text-slate-800"><%= '%.2f' % @total_price %> €</div>
+                            </li>
+                        </ul>
+                        <!-- Promo box -->
+                        <div class="mb-4">
+                            <%= form_tag checkout_create_path, method: :post, data: { turbo: false } do %>
+                                <input type="hidden" name="total" value="<%= @total_price %>" />
+                                <%= submit_tag "Buy Now -  #{'%.2f' % @total_price}  €", class: "btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" %>
+                            <% end %>
+                        </div>
+                        <div class="text-xs text-slate-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a class="underline hover:no-underline" href="#0">Terms</a>.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 </div>

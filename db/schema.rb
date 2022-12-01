@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_201840) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_144451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -30,8 +30,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_201840) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "join_table_user_to_carts", force: :cascade do |t|
+    t.bigint "cart_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_join_table_user_to_carts_on_cart_id"
+    t.index ["item_id"], name: "index_join_table_user_to_carts_on_item_id"
+  end
+
+  create_table "join_table_user_to_charts", force: :cascade do |t|
+    t.bigint "cart_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_join_table_user_to_charts_on_cart_id"
+    t.index ["item_id"], name: "index_join_table_user_to_charts_on_item_id"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
 
   # GET /carts or /carts.json
   def index
@@ -8,6 +7,8 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    @items = @cart.items
+    @total_price = total_price
   end
 
   # GET /carts/new
@@ -67,19 +68,17 @@ class CartsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      if user_signed_in? && current_user.cart
-        @cart = current_user.cart
-      elsif user_signed_in?
-        @cart = Cart.create(user: current_user)
-      else
-        flash[:error] = "Merci de vous connecter pour accéder à cette page."
-        redirect_to new_user_session_path
-      end
-    end
 
     # Only allow a list of trusted parameters through.
     def cart_params
       params.fetch(:cart, {})
+    end
+
+    def total_price
+      total = 0
+      @cart.items.each do |item|
+        total += item.price
+      end
+      return total
     end
 end

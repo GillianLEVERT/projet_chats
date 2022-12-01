@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :join_table_user_to_carts
   resources :carts
   root "items#index"
   devise_for :users
