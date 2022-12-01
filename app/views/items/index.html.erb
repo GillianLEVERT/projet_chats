@@ -1,38 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Listes des chats ici bas (surêment à supprimer pour le vrai front)</h1>
-
-<div id="items">
-  <% @items.each do |item| %>
+<div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+  <p style="color: green"><%= notice %></p>
+  
+  <div id="items" class="grid grid-cols-12 gap-6">
+    <% @items.each do |item| %>
     <%= render item %>
-    <p><%= link_to "Intéressé(e) ? Plus d'information ici", item %></p>
-    <p>Ajouter au panier</p>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-
-
-<ul>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        </li>
-
-        <li>
-          Voici ton email : <%= current_user.email %>
-        </li>
-
-        <li>
-          <%= link_to "Edit email / password", edit_user_registration_path %>
-        </li>
-
-      <% else %>
-        <li>    
-          <%= link_to "Sign in", new_user_session_path %>
-        </li>
-
-        <li>
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-
-      <% end %>
-    </ul>

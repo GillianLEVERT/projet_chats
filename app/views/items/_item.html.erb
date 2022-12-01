@@ -1,8 +1,24 @@
-<div id="<%= dom_id item %>">
-    <div class="card">
-        <h1><%=item.title%></h1>
-        <p>Description : <%=item.description%></p>
-        <%= image_tag item.image_url %> 
-        <h3>Prix de la photo : <%=item.price%> €</h3> 
+<div class="col-span-full md:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200 overflow-hidden" id="<%= dom_id item %>">
+    <%= link_to item_path(item.id) do %>
+    <div class="flex flex-col h-full">
+        <div class="relative">
+            <%= image_tag item.image_url, class: "w-full", alt: "Photo de chat", style: "width=301 height=226"%>
+        </div>
+        <div class="grow flex flex-col p-5">
+            <div class="grow">
+                <header class="mb-2">
+                    <a href="#0">
+                        <h3 class="text-lg text-slate-800 font-semibold mb-1"><%=item.title%></h3>
+                    </a>
+                    <div class="text-sm"><%=item.description%></div>
+                </header>
+            </div>
+            <div class="flex flex-wrap justify-between items-center">
+                <div>
+                    <div class="inline-flex text-sm font-medium bg-emerald-100 text-emerald-600 rounded-full text-center px-2 py-0.5"><%= '%.2f' % item.price%> €</div>
+                </div>
+            </div>
+        </div>
     </div>
+    <% end %>
 </div>
